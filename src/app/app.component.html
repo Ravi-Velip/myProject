@@ -1,0 +1,70 @@
+<div class="container">
+  <h1 _ngcontent-abw-c40="" class="text-center" style="background-color: red;color: white;padding-bottom: 4px;">Order Management</h1>  
+<div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">Order List</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">No</th>
+            <th class="text-center">OrderID</th>
+            <th class="text-center">OrderName</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.no }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.OrderName }}</td>
+            <td>{{ user.amount }}</td>
+
+            <td style="text-align: center;">
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showUserDetails(user)"> <i class="fas fa-eye"></i></button>
+
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user)"><i class="fas fa-edit"></i></button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeUser(user)"><i class="far fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddUserForm()">+</button>
+
+      <div class="mt-4">
+        <form *ngIf="userForm">
+          <h2>Add New User</h2>
+          <p>OrderID: <input type="text" name="OrderID" [(ngModel)]="newUser.id" /></p>
+          <p>OrderName: <input type="text" name="OrderName" [(ngModel)]="newUser.OrderName" /></p>
+          <p>Amount: <input type="text" name="amount" [(ngModel)]="newUser.amount" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveUser(newUser)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewUser()">Cancel</button>
+          </p>
+        </form>
+
+        <form id="UD" *ngIf="userDetails">
+          <h2>User Details</h2>
+          <p>OrderID: <input type="text" name="OrderID" [(ngModel)]="view.id" /></p>
+          <p>OrderName: <input type="text" name="OrderName" [(ngModel)]="view.OrderName" /></p>
+          <p>Amount: <input type="text" name="amount" [(ngModel)]="view.amount" /></p>
+          <p>
+            <button type="button" class="btn btn-warning" (click)="cancelView()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editUserForm">
+          <h2>Edit User Details</h2>
+          <p>OrderID: <input type="text" name="OrderID" [(ngModel)]="editedUser.id" /></p>
+          <p>OrderName: <input type="text" name="OrderName" [(ngModel)]="editedUser.OrderName" /></p>
+          <p>Amount: <input type="text" name="amount" [(ngModel)]="editedUser.amount" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateUser()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
